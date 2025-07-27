@@ -67,6 +67,11 @@ public class MemberProjectionTest {
             .from(member)
             .fetch();
 
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0).getUsername()).isEqualTo("bread");
+        assertThat(result.get(0).age).isEqualTo(20);
+        assertThat(result.get(1).getUsername()).isEqualTo("coffee");
+        assertThat(result.get(1).age).isEqualTo(30);
     }
 
     @Test
@@ -79,6 +84,11 @@ public class MemberProjectionTest {
             .from(member)
             .fetch();
 
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0).getUsername()).isEqualTo("bread");
+        assertThat(result.get(0).getAge()).isEqualTo(20);
+        assertThat(result.get(1).getUsername()).isEqualTo("coffee");
+        assertThat(result.get(1).getAge()).isEqualTo(30);
     }
 
     @Test
