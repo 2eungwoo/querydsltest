@@ -1,5 +1,8 @@
 package com.back2basics.querydsltest.projections.constructor;
 
+import lombok.Getter;
+
+@Getter
 public class MemberDtoConstructor {
     private final String username;
     private final int age;

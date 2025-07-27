@@ -1,5 +1,7 @@
 package com.back2basics.querydsltest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.back2basics.querydsltest.entity.MemberEntity;
 import com.back2basics.querydsltest.entity.QMemberEntity;
 import com.back2basics.querydsltest.projections.bean.MemberDtoBean;
@@ -32,8 +34,8 @@ public class MemberProjectionTest {
 
     @BeforeEach
     void setUp() {
-        entityManager.persist(MemberEntity.create("user1", 20));
-        entityManager.persist(MemberEntity.create("user2", 30));
+        entityManager.persist(MemberEntity.create("bread", 20));
+        entityManager.persist(MemberEntity.create("coffee", 30));
         entityManager.flush();
         entityManager.clear();
     }
@@ -48,7 +50,11 @@ public class MemberProjectionTest {
             .from(member)
             .fetch();
 
-        result.forEach(System.out::println);
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0).getUsername()).isEqualTo("bread");
+        assertThat(result.get(0).getAge()).isEqualTo(20);
+        assertThat(result.get(1).getUsername()).isEqualTo("coffee");
+        assertThat(result.get(1).getAge()).isEqualTo(30);
     }
 
     @Test
@@ -61,7 +67,6 @@ public class MemberProjectionTest {
             .from(member)
             .fetch();
 
-        result.forEach(System.out::println);
     }
 
     @Test
@@ -74,7 +79,6 @@ public class MemberProjectionTest {
             .from(member)
             .fetch();
 
-        result.forEach(System.out::println);
     }
 
     @Test
@@ -87,6 +91,10 @@ public class MemberProjectionTest {
             .from(member)
             .fetch();
 
-        result.forEach(System.out::println);
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0).getUsername()).isEqualTo("bread");
+        assertThat(result.get(0).getAge()).isEqualTo(20);
+        assertThat(result.get(1).getUsername()).isEqualTo("coffee");
+        assertThat(result.get(1).getAge()).isEqualTo(30);
     }
 }
