@@ -1,9 +1,17 @@
 package com.back2basics.querydsltest;
 
 import com.back2basics.querydsltest.entity.MemberEntity;
+import com.back2basics.querydsltest.entity.QMemberEntity;
+import com.back2basics.querydsltest.projections.bean.MemberDtoBean;
+import com.back2basics.querydsltest.projections.constructor.MemberDtoConstructor;
+import com.back2basics.querydsltest.projections.fields.MemberDtoFields;
+import com.back2basics.querydsltest.projections.queryprojection.MemberDtoQueryProjection;
+import com.back2basics.querydsltest.projections.queryprojection.QMemberDtoQueryProjection;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = QuerydsltestApplication.class)
+@Transactional
 public class MemberProjectionTest {
 
     @Autowired
@@ -18,6 +27,8 @@ public class MemberProjectionTest {
 
     @Autowired
     JPAQueryFactory queryFactory;
+
+    QMemberEntity member = QMemberEntity.memberEntity;
 
     @BeforeEach
     void setUp() {
