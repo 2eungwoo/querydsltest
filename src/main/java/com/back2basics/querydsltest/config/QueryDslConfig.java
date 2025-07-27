@@ -1,4 +1,4 @@
-package com.back2basics.querydsltest;
+package com.back2basics.querydsltest.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
